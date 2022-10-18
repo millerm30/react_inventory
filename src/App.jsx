@@ -9,18 +9,14 @@ const App = () => {
   const [tools, setTools] = useState([]);
 
   useEffect(() => {
-    getReviews();
-  }, []);
-
-  const getReviews = () => {
     axios.get('http://localhost:3030/tools')
-      .then(res => {
+      .then((res) => {
         setTools(res.data);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
-  };
+  }, []);
 
   return (
     <div>
