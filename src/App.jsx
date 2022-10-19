@@ -7,6 +7,7 @@ import toolLogo from './assets/appLogo.png';
 
 const App = () => {
   const [tools, setTools] = useState([]);
+  const [ newToolAdded, setToolAdded ] = useState(0);
 
   useEffect(() => {
     axios.get('http://localhost:3030/tools')
@@ -16,7 +17,7 @@ const App = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [newToolAdded]);
 
   return (
     <div>
@@ -24,7 +25,7 @@ const App = () => {
         <img src={toolLogo} alt="tool logo" className="w-1/8" />
         <h1 className="text-4xl font-bold self-center ml-2">Tool Inventory</h1>
       </div>
-      <Add setTools={setTools} tools={tools} />
+      <Add setTools={setTools} tools={tools} setToolAdded={setToolAdded} newToolAdded={newToolAdded} />
       {!tools.length ? (
         <div className="flex justify-center">
           <h1 className="text-2xl font-bold self-center mt-6">
@@ -39,7 +40,7 @@ const App = () => {
               className="flex flex-col justify-center w-3/4 my-6 bg-white mx-4 shadow-md rounded-xl md:w-1/3 lg:w-1/5"
             >
               <div className="w-full bg-cyan-700 rounded-t-xl p-1">
-                <Delete setTools={setTools} tools={tools} id={tool.id} />
+                <Delete setTools={setTools} tools={tools} id={tool.id} newToolAdded={newToolAdded} setToolAdded={setToolAdded} />
               </div>
               <div className="p-2">
                 <h1 className="text-2xl font-bold">Type: {tool.name}</h1>

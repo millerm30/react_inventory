@@ -8,6 +8,7 @@ export default function Delete(props) {
     axios.delete(`http://localhost:3030/tools/${id}`)
       .then(res => {
         setTools(tools.filter(tool => tool.id !== id));
+        props.setToolAdded(props.newToolAdded - 1);
       })
       .catch(err => {
         console.log(err);

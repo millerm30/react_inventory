@@ -22,7 +22,7 @@ export default function Add(props) {
        .then((res) => {
          console.log(res);
          props.setTools([...props.tools, newTool]);
-         window.location.reload();
+         props.setToolAdded(props.newToolAdded + 1);
        })
        .catch((error) => {
          console.log(error);
