@@ -5,7 +5,6 @@ export default function Add(props) {
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     addTool(data);
     reset();
   };
@@ -20,7 +19,6 @@ export default function Add(props) {
      axios
        .post("http://localhost:3030/tools", newTool)
        .then((res) => {
-         console.log(res);
          props.setTools([...props.tools, newTool]);
          props.setToolAdded(props.newToolAdded + 1);
        })
